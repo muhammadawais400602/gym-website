@@ -1,58 +1,81 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
 
 const links = [
+  { href: "#home", label: "Home" },
+  { href: "#membership", label: "Membership" },
   { href: "#classes", label: "Classes" },
   { href: "#trainers", label: "Trainers" },
-  { href: "#pricing", label: "Pricing" },
   { href: "#contact", label: "Contact" },
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-neutral-950/80 backdrop-blur">
-      <div className="container-x flex h-16 items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 text-lg font-black tracking-wider">
-          <span className="grid h-8 w-8 place-items-center rounded bg-brand text-white">IF</span>
-          <span>IRONFORGE</span>
-        </Link>
-        <nav className="hidden items-center gap-8 md:flex">
-          {links.map((l) => (
-            <a key={l.href} href={l.href} className="text-sm font-medium text-neutral-300 hover:text-white">
+    <header className="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+      <div className="h-20 max-w-7xl mx-auto px-margin lg:px-space-xl flex items-center justify-between gap-gutter">
+        <a href="#home" className="flex items-center gap-space-sm">
+          <span className="grid h-8 w-8 place-items-center rounded bg-primary-container text-on-primary-container font-headline-sm text-[14px] font-bold">
+            AX
+          </span>
+          <span className="font-headline-sm text-headline-sm uppercase tracking-tight text-on-surface">
+            APEX ATHLETICS
+          </span>
+        </a>
+        <nav className="hidden md:flex items-center gap-space-lg">
+          {links.map((l, i) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className={
+                i === 0
+                  ? "uppercase transition-colors text-primary-container font-bold font-label-lg text-label-lg"
+                  : "font-label-lg text-label-lg uppercase text-on-surface-variant hover:text-on-surface transition-colors"
+              }
+            >
               {l.label}
             </a>
           ))}
-          <a href="#pricing" className="btn-primary !px-5 !py-2 text-sm">
+        </nav>
+        <div className="flex items-center gap-space-md">
+          <a
+            href="#membership"
+            className="hidden sm:inline-flex items-center justify-center bg-primary-container text-on-primary-container hover:bg-primary-fixed hover:text-on-primary-fixed font-label-lg text-label-lg uppercase px-space-lg py-space-sm rounded-lg transition-all"
+          >
             Join Now
           </a>
-        </nav>
-        <button
-          onClick={() => setOpen(!open)}
-          className="rounded border border-white/10 p-2 md:hidden"
-          aria-label="Toggle menu"
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            {open ? <path d="M6 6l12 12M6 18L18 6" /> : <path d="M3 6h18M3 12h18M3 18h18" />}
-          </svg>
-        </button>
+          <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+            <span className="material-symbols-outlined text-on-primary text-[18px]">person</span>
+          </div>
+          <button
+            aria-label="Toggle Menu"
+            onClick={() => setOpen(!open)}
+            className="md:hidden p-space-xs text-on-surface-variant hover:text-on-surface transition-colors"
+            type="button"
+          >
+            <span className="material-symbols-outlined">{open ? "close" : "menu"}</span>
+          </button>
+        </div>
       </div>
       {open && (
-        <div className="border-t border-white/10 md:hidden">
-          <div className="container-x flex flex-col gap-3 py-4">
+        <div className="md:hidden border-t border-surface-container-high bg-surface">
+          <div className="max-w-7xl mx-auto px-margin py-space-md flex flex-col gap-space-sm">
             {links.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="text-sm font-medium text-neutral-300"
+                className="font-label-lg text-label-lg uppercase text-on-surface-variant py-space-xs"
               >
                 {l.label}
               </a>
             ))}
-            <a href="#pricing" onClick={() => setOpen(false)} className="btn-primary !py-2 text-sm">
+            <a
+              href="#membership"
+              onClick={() => setOpen(false)}
+              className="mt-space-xs inline-flex items-center justify-center bg-primary-container text-on-primary-container font-label-lg text-label-lg uppercase px-space-lg py-space-sm rounded-lg"
+            >
               Join Now
             </a>
           </div>

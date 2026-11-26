@@ -1,21 +1,23 @@
 import Hero from "@/components/Hero";
-import Features from "@/components/Features";
+import WhyUs from "@/components/WhyUs";
+import Membership from "@/components/Membership";
 import Classes from "@/components/Classes";
 import Trainers from "@/components/Trainers";
-import Pricing from "@/components/Pricing";
-import Testimonials from "@/components/Testimonials";
+import Transformations from "@/components/Transformations";
+import FreeTrial from "@/components/FreeTrial";
 import Contact from "@/components/Contact";
 
 export default function Home() {
   return (
-    <>
+    <div className="flex flex-col w-full">
       <Hero />
-      <Features />
+      <WhyUs />
+      <Membership />
       <Classes />
       <Trainers />
-      <Testimonials />
-      <Pricing />
+      <Transformations />
+      <FreeTrial />
       <Contact />
-    </>
+    </div>
   );
 }
